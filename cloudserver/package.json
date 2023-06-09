@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "firebase": "^8.0.2",
+    "firebase-admin": "^8.13.0",
+    "path": "^0.12.7",
+    "util": "^0.12.5",
+    "videoshow": "^0.1.12",
+    "ws": "^8.12.1"
+  }
+}

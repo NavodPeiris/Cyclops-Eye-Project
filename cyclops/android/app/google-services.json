@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "139688759634",
+    "firebase_url": "https://cyclops-eye-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "cyclops-eye",
+    "storage_bucket": "cyclops-eye.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:139688759634:android:77bb5fd0adaee1c2d36a8b",
+        "android_client_info": {
+          "package_name": "com.example.cyclops"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "139688759634-19s5m8mlt8f8mhmta7i0eaj1hbu3d55k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAG_7jStt5PNhwoh8ziFjsu0wLj_huRg_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "139688759634-19s5m8mlt8f8mhmta7i0eaj1hbu3d55k.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "139688759634-td9b452e48eml2tmnsqg72pjql7dne4e.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cyclops"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
