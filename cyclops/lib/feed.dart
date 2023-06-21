@@ -23,7 +23,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'blinkingTimer.dart';
 
 class Feed extends StatefulWidget {
-  final WebSocketChannel channel = IOWebSocketChannel.connect('ws://34.131.251.19:65080');
+  final WebSocketChannel channel = IOWebSocketChannel.connect('ws://34.100.134.218:65080');
 
   @override
   _FeedState createState() => _FeedState();

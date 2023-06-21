@@ -116,7 +116,7 @@ unsigned long lastPrintTime = 0;
 const unsigned long printInterval = 60000;
 */
 
-const char* websocket_server_host = "34.131.251.19";
+const char* websocket_server_host = "34.100.134.218";
 const uint16_t websocket_server_port = 65080;
 
 using namespace websockets;
@@ -135,7 +135,7 @@ void setup() {
 
   WiFiManager wm;
 
-  //wm.resetSettings();         //if resetting, again and again have to give credentials
+  wm.resetSettings();         //if resetting, again and again have to give credentials
   
   bool res;
 
@@ -205,8 +205,9 @@ void setup() {
   }
  
   sensor_t * s = esp_camera_sensor_get();
-  
+  s->set_brightness(s, 1); // up the brightness just a bit
   s->set_framesize(s, FRAMESIZE_QVGA);
+  
 
   face_id_init(&id_list, FACE_ID_SAVE_NUMBER, ENROLL_CONFIRM_TIMES); 
 
@@ -324,22 +325,10 @@ static int rgb_printf(dl_matrix3du_t *image_matrix, uint32_t color, const char *
     return len;
 }
 
-
-static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, int face_id)
+void face_track(box_array_t *boxes)
 {
   int x, y, w, h, i, half_width, half_height;
-  uint32_t color = FACE_COLOR_YELLOW;
-  if(face_id < 0){
-      color = FACE_COLOR_RED;
-  } else if(face_id > 0){
-      color = FACE_COLOR_GREEN;
-  }
-  fb_data_t fb;
-  fb.width = image_matrix->w;
-  fb.height = image_matrix->h;
-  fb.data = image_matrix->item;
-  fb.bytes_per_pixel = 3;
-  fb.format = FB_BGR888;
+
   for (i = 0; i < boxes->len; i++) {
  
     // Convoluted way of finding face centre...
@@ -361,7 +350,7 @@ static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, in
     //    float pixels_per_degree = diagonal / lens_fov;
     //    400/45 = 8.89
  
-    float move_to_x = pan_center + ((-160 + face_center_pan) / 8.89) ;
+    float move_to_x = pan_center + ((160 - face_center_pan) / 8.89) ;
     float move_to_y = tilt_center + ((-120 + face_center_tilt) / 8.89) ;
  
     pan_center = (pan_center + move_to_x) / 2;
@@ -371,11 +360,34 @@ static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, in
     tilt_center = (tilt_center + move_to_y) / 2;
     int reversed_tilt_center = map(tilt_center, 0, 180, 180, 0);
     ledcAnalogWrite(4, reversed_tilt_center); // channel, 0-180
- 
+  }
+}
+
+
+static void draw_face_boxes(dl_matrix3du_t *image_matrix, box_array_t *boxes, int face_id)
+{
+  int x, y, w, h, i;
+  uint32_t color = FACE_COLOR_YELLOW;
+  if(face_id < 0){
+      color = FACE_COLOR_RED;
+  } else if(face_id > 0){
+      color = FACE_COLOR_GREEN;
+  }
+  fb_data_t fb;
+  fb.width = image_matrix->w;
+  fb.height = image_matrix->h;
+  fb.data = image_matrix->item;
+  fb.bytes_per_pixel = 3;
+  fb.format = FB_BGR888;
+  for (i = 0; i < boxes->len; i++) {
+    x = (int)boxes->box[i].box_p[0];
+    y = (int)boxes->box[i].box_p[1];
+    w = (int)boxes->box[i].box_p[2] - x + 1;
+    h = (int)boxes->box[i].box_p[3] - y + 1;
     fb_gfx_drawFastHLine(&fb, x, y, w, color);
-    fb_gfx_drawFastHLine(&fb, x, y + h - 1, w, color);
+    fb_gfx_drawFastHLine(&fb, x, y+h-1, w, color);
     fb_gfx_drawFastVLine(&fb, x, y, h, color);
-    fb_gfx_drawFastVLine(&fb, x + w - 1, y, h, color);
+    fb_gfx_drawFastVLine(&fb, x+w-1, y, h, color);
   }
 }
 
@@ -538,6 +550,7 @@ void startCameraServer(){
                             if(net_boxes){
                                 //Serial.println("faces = " + String(net_boxes->len)); 
                                 detected = true;
+                                face_track(net_boxes);
                                 if(recognition_enabled){
                                     face_id = run_face_recognition(image_matrix, net_boxes);  
                                 }

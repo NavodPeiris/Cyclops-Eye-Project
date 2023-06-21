@@ -44,12 +44,35 @@ class _StorageState extends State<Storage> {
     File tempFile = File(tempPath);
 
     try {
+      // Show a dialog with a circular progress indicator
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return Dialog(
+            child: Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(height: 16.0),
+                  Text('Downloading video...'),
+                ],
+              ),
+            ),
+          );
+        },
+      );
+
       // Download the video file to the temporary file
       await videoRef.writeToFile(tempFile);
 
+      // Close the progress dialog
+      Navigator.pop(context);
+
       // Save the video to the gallery
       final result = await GallerySaver.saveVideo(tempPath);
-
       bool saved = result as bool;
 
       // Show a snackbar or display a success message
@@ -58,12 +81,16 @@ class _StorageState extends State<Storage> {
       ));
     } catch (e) {
       print('Error downloading video: $e');
+      // Close the progress dialog
+      Navigator.pop(context);
+
       // Show a snackbar or display an error message
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text('Failed to download video.'),
       ));
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
