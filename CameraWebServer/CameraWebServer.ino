@@ -14,11 +14,6 @@
 #define ENROLL_CONFIRM_TIMES 5
 #define FACE_ID_SAVE_NUMBER 7
 
-/*
-const char* ssid = "Dialog 4G 669";
-const char* password = "dBb27Bc3";
-*/
-
 // Arduino like analogWrite
 // value has to be between 0 and valueMax
 void ledcAnalogWrite(uint8_t channel, uint32_t value, uint32_t valueMax = 180)
@@ -86,38 +81,21 @@ static inline mtmn_config_t app_mtmn_config()
 mtmn_config_t mtmn_config = app_mtmn_config();
 
 
-#define API_KEY "AIzaSyACut2yjfexRlRPZ4F8UbHLZ9JHugNCQYI"
-#define DATABASE_URL "https://cyclops-eye-default-rtdb.asia-southeast1.firebasedatabase.app" 
-//#define STORAGE_BUCKET_ID "cyclops-eye.appspot.com"
+#define API_KEY "YOUR API KEY"
+#define DATABASE_URL "https://{YOUR PROJECT NAME}-default-rtdb.asia-southeast1.firebasedatabase.app" 
 
 FirebaseData fbdo;
 
 FirebaseAuth auth;
 FirebaseConfig firebaseConfig;
 
-/*
-bool taskCompleted = false;
-int intValue;
-float floatValue;
-*/
-
 bool signupOK = false;
 bool enroll = false;
 bool rec = false;
 bool is_recording = false;
 
-/*
-#define FIREBASE_FCM_SERVER_KEY "AAAAIIYZUVI:APA91bGStLgCn9XqSwHzgUsTiut79p_9omzonxFuYK64wZVoJXGrj31pXmezU2DiM8mdkkHzuw-2DKOnzIFFAW4_Kw46xoGE5ESskCrCfM7WOIAMyF9ggLw83dkSHilxv4IJjxGYdguJ"
-#define DEVICE_REGISTRATION_ID_TOKEN "c9r-JvmZTZqQ7al5HI02ZC:APA91bFm16XMds9nwHXv7tN1rAqRY9V5qWX6BNTBRvNa57MvmkHCntbkFm84s0XZyRczaTMzyeAJ4YSG-thwGODm3lFN7kkm6spFy3nK9AIlsId9ydU4E0XW2VhR1YuBQii-egrwpQ2o"
-*/
-
-/*
-unsigned long lastPrintTime = 0;
-const unsigned long printInterval = 60000;
-*/
-
-const char* websocket_server_host = "34.100.134.218";
-const uint16_t websocket_server_port = 65080;
+const char* websocket_server_host = "34.100.134.218";     //ip address of server
+const uint16_t websocket_server_port = 65080;            //65080 is the port for websockets
 
 using namespace websockets;
 WebsocketsClient client;
@@ -210,18 +188,6 @@ void setup() {
   
 
   face_id_init(&id_list, FACE_ID_SAVE_NUMBER, ENROLL_CONFIRM_TIMES); 
-
-  /*
-  WiFi.begin(ssid, password);
- 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("");
-  Serial.println("WiFi connected");
-  */
- 
  
   while(!client.connect(websocket_server_host, websocket_server_port, "/")){
     delay(500);
@@ -240,9 +206,7 @@ void setup() {
     Serial.printf("%s\n", firebaseConfig.signer.signupError.message.c_str());
   }
 
-  //firebaseConfig.fcs.download_buffer_size = 8,192;
   Firebase.begin(&firebaseConfig, &auth);
-  //Firebase.FCM.setServerKey(FIREBASE_FCM_SERVER_KEY);
 
   Firebase.RTDB.setBool(&fbdo, "/test/online", true);          //indicating camera is online
   
@@ -253,41 +217,6 @@ void setup() {
 void loop() {
    
 }
-
-/*
-void sendMessage()
-{
-
-  Serial.printf("Send Firebase Cloud Messaging... ");
-
-  // allocate memory for FCM_Legacy_HTTP_Message object
-  FCM_Legacy_HTTP_Message* msg = new FCM_Legacy_HTTP_Message();
-  
-  msg->targets.to = DEVICE_REGISTRATION_ID_TOKEN;
-  
-  msg->options.time_to_live = "1000";
-  msg->options.priority = "high";
-  
-  msg->payloads.notification.title = "intruder detected";
-  msg->payloads.notification.body = "camera notification";
-  
-  FirebaseJson* payload = new FirebaseJson(); // allocate memory for FirebaseJson object
-  
-  // all data key-values should be string
-  payload->add("person", "detected");
-  
-  msg->payloads.data = payload->raw();
-  
-  if (Firebase.FCM.send(&fbdo, msg)) // send message to recipient
-      Serial.printf("ok\n%s\n\n", Firebase.FCM.payload(&fbdo).c_str());
-  else
-      Serial.printf(fbdo.errorReason().c_str());
-  
-  delete payload; // free memory for FirebaseJson object
-  delete msg;
-}
-*/
-
 
 static void rgb_print(dl_matrix3du_t *image_matrix, uint32_t color, const char * str){
     fb_data_t fb;
