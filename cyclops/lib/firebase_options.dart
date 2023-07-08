@@ -47,32 +47,32 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyACut2yjfexRlRPZ4F8UbHLZ9JHugNCQYI',
-    appId: '1:139688759634:web:cc3185a9869f8c38d36a8b',
-    messagingSenderId: '139688759634',
-    projectId: 'cyclops-eye',
-    authDomain: 'cyclops-eye.firebaseapp.com',
-    databaseURL: 'https://cyclops-eye-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'cyclops-eye.appspot.com',
+    apiKey: 'REPLACE WITH YOUR OWN',
+    appId: 'REPLACE WITH YOUR OWN',
+    messagingSenderId: 'REPLACE WITH YOUR OWN',
+    projectId: 'REPLACE WITH YOUR OWN',
+    authDomain: 'REPLACE WITH YOUR OWN',
+    databaseURL: 'REPLACE WITH YOUR OWN',
+    storageBucket: 'REPLACE WITH YOUR OWN',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAG_7jStt5PNhwoh8ziFjsu0wLj_huRg_w',
-    appId: '1:139688759634:android:77bb5fd0adaee1c2d36a8b',
-    messagingSenderId: '139688759634',
-    projectId: 'cyclops-eye',
-    databaseURL: 'https://cyclops-eye-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'cyclops-eye.appspot.com',
+    apiKey: 'REPLACE WITH YOUR OWN',
+    appId: 'REPLACE WITH YOUR OWN',
+    messagingSenderId: 'REPLACE WITH YOUR OWN',
+    projectId: 'REPLACE WITH YOUR OWN',
+    databaseURL: 'REPLACE WITH YOUR OWN',
+    storageBucket: 'REPLACE WITH YOUR OWN',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBhKRsNmBsivdvi_nz-VMqprxeLtAehcV0',
-    appId: '1:139688759634:ios:b8cb876602d44e3ad36a8b',
-    messagingSenderId: '139688759634',
-    projectId: 'cyclops-eye',
-    databaseURL: 'https://cyclops-eye-default-rtdb.asia-southeast1.firebasedatabase.app',
-    storageBucket: 'cyclops-eye.appspot.com',
-    iosClientId: '139688759634-td9b452e48eml2tmnsqg72pjql7dne4e.apps.googleusercontent.com',
-    iosBundleId: 'com.example.cyclops',
+    apiKey: 'REPLACE WITH YOUR OWN',
+    appId: 'REPLACE WITH YOUR OWN',
+    messagingSenderId: 'REPLACE WITH YOUR OWN',
+    projectId: 'REPLACE WITH YOUR OWN',
+    databaseURL: 'REPLACE WITH YOUR OWN',
+    storageBucket: 'REPLACE WITH YOUR OWN',
+    iosClientId: 'REPLACE WITH YOUR OWN',
+    iosBundleId: 'REPLACE WITH YOUR OWN',
   );
 }
