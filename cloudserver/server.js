@@ -11,8 +11,8 @@ const videoshow = require('videoshow');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://cyclops-eye-default-rtdb.asia-southeast1.firebasedatabase.app',
-  storageBucket: "cyclops-eye.appspot.com" 
+  databaseURL: 'https://{YOUR PROJECT NAME}-default-rtdb.asia-southeast1.firebasedatabase.app',
+  storageBucket: "{YOUR PROJECT NAME}.appspot.com" 
 });
 
 for(let i=1; i <= 6000; i++){
