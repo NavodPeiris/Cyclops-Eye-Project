@@ -5,4 +5,4 @@ CameraWebServer  -  This is the code that runs on the ESP32 Camera and it will r
 
 cloudserver  -  This is the code that is running at Node server. clone this to a folder inside a VM instance running at GCP. You would need to Use GCP Compute Engine to run a VM instance and choose Ubuntu LTS version and install nodejs, git. Also remember to Enable Ingress and Egress through Port 65080 which is the websocket port. run 'npm install' inside cloned directory to install dependencies. run 'sudo node server.js' to run the server.
 
-cyclops  -  This is the Flutter app that is used to view the Camera Feed and can also used for recoeding video and downloading videos stored in cloud. After cloning run 'pub get' inside cyclops folder to install dependencies. Then build for your android device.
+cyclops  -  This is the Flutter app that is used to view the Camera Feed and can also used for recording video and downloading videos stored in cloud. After cloning run 'pub get' inside cyclops folder to install dependencies. Then build for your android device.
