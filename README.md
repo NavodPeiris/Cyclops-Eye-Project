@@ -1,4 +1,14 @@
 # Cyclops-Eye-Project
+```
+ _______  __   __  _______  ___      _______  _______  _______         ___  
+|       ||  | |  ||       ||   |    |       ||       ||       |       |   | 
+|       ||  |_|  ||       ||   |    |   _   ||    _  ||  _____| ____  |   | 
+|       ||       ||       ||   |    |  | |  ||   |_| || |_____ |____| |   | 
+|      _||_     _||      _||   |___ |  |_|  ||    ___||_____  |       |   | 
+|     |_   |   |  |     |_ |       ||       ||   |     _____| |       |   | 
+|_______|  |___|  |_______||_______||_______||___|    |_______|       |___| 
+
+```
 This is the Project done in 2nd Year.
 
 CameraWebServer  -  This is the code that runs on the ESP32 Camera and it will recognize faces while streaming realtime to a Node server running at GCP VM instance. Websockets are used for streaming from ESP32 to server. upload this code to an ESP32.
