@@ -19,4 +19,6 @@ cyclops  -  This is the Flutter app that is used to view the Camera Feed and can
 
 See demonstration: 
 
-https://github.com/Navodplayer1/Cyclops-Eye-Project/blob/main/cyclops-eye-demo.mp4
+https://github.com/Navodplayer1/Cyclops-Eye-Project/assets/69672640/6c57d24b-579e-4be5-8423-43795f27d666
+
+
