@@ -17,4 +17,6 @@ cloudserver  -  This is the code that is running at Node server. clone this to a
 
 cyclops  -  This is the Flutter app that is used to view the Camera Feed and can also used for recording video and downloading videos stored in cloud. After cloning run 'pub get' inside cyclops folder to install dependencies. Then build for your android device.
 
-See demonstration: https://drive.google.com/file/d/13jPcI1OmvoVqScENy_Hg5iMIdV4LYF-9/view?usp=sharing
+See demonstration: 
+
+https://github.com/Navodplayer1/Cyclops-Eye-Project/blob/main/cyclops-eye-demo.mp4
